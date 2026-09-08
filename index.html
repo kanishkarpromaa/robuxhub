@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A safe Roblox-themed website with Robux earning tips and scam awareness.">
+  <title>RobuxHub — Safe Robux Guide</title>
+  <style>
+* { box-sizing: border-box; }
+:root {
+  --bg: #080b12;
+  --panel: #111722;
+  --panel2: #171e2b;
+  --text: #f5f7fb;
+  --muted: #aab3c4;
+  --green: #19e68c;
+  --green-dark: #0ebd70;
+  --purple: #8b5cf6;
+  --orange: #ffad3d;
+  --border: rgba(255,255,255,.09);
+}
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif;
+  background: radial-gradient(circle at 75% 10%, rgba(139,92,246,.16), transparent 28%), var(--bg);
+  color: var(--text); line-height: 1.6;
+}
+a { color: inherit; text-decoration: none; }
+.navbar {
+  height: 72px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 7%; border-bottom: 1px solid var(--border);
+  background: rgba(8,11,18,.78); backdrop-filter: blur(16px); position: sticky; top: 0; z-index: 10;
+}
+.brand { display:flex; align-items:center; gap:10px; font-weight:900; font-size:20px; }
+.brand-icon {
+  display:grid; place-items:center; width:36px; height:36px; border-radius:10px;
+  background: linear-gradient(135deg, var(--green), #0cae72); color:#06130d;
+}
+.brand-accent { color: var(--green); }
+nav { display:flex; gap:28px; color:var(--muted); font-weight:700; }
+nav a:hover { color:var(--text); }
+.menu-toggle { display:none; background:none; border:0; color:white; font-size:25px; }
+.hero {
+  min-height: 690px; display:grid; grid-template-columns:1.05fr .95fr; gap:50px;
+  align-items:center; padding:80px 8%;
+}
+.pill, .eyebrow { color:var(--green); font-weight:900; letter-spacing:1.2px; font-size:12px; }
+.pill {
+  display:inline-block; padding:8px 12px; border:1px solid rgba(25,230,140,.25);
+  background:rgba(25,230,140,.07); border-radius:999px; letter-spacing:.3px;
+}
+h1 { font-size:clamp(46px, 6vw, 78px); line-height:1.02; margin:22px 0; letter-spacing:-3px; }
+h1 span { color:var(--green); }
+.hero-text { max-width:650px; color:var(--muted); font-size:18px; }
+.hero-buttons { display:flex; gap:14px; margin:30px 0; flex-wrap:wrap; }
+.btn { padding:13px 21px; border-radius:12px; font-weight:900; display:inline-block; transition:.2s; }
+.btn:hover { transform:translateY(-2px); }
+.primary { background:var(--green); color:#06130d; }
+.secondary { border:1px solid var(--border); background:var(--panel); }
+.trust-row { display:flex; gap:35px; margin-top:45px; }
+.trust-row div { display:flex; flex-direction:column; }
+.trust-row strong { font-size:23px; }
+.trust-row span { color:var(--muted); font-size:12px; }
+.hero-card { min-height:430px; position:relative; display:grid; place-items:center; }
+.robux-card {
+  width:min(370px,80%); height:280px; border:1px solid var(--border); border-radius:32px;
+  background:linear-gradient(145deg, #1b2434, #0d121c); box-shadow:0 35px 100px rgba(0,0,0,.5);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative;
+}
+.coin {
+  width:125px; height:125px; border-radius:35px; display:grid; place-items:center;
+  background:linear-gradient(135deg, var(--green), #079f64); color:#05130c;
+  font-size:42px; font-weight:1000; transform:rotate(-8deg); box-shadow:0 15px 50px rgba(25,230,140,.2);
+}
+.robux-card .coin { position:absolute; top:-58px; }
+.small-label { color:var(--muted); font-size:11px; font-weight:900; letter-spacing:2px; margin-top:45px; }
+.robux-number { font-size:52px; font-weight:1000; letter-spacing:-3px; }
+.robux-card p { color:var(--muted); margin:0; }
+.floating-card {
+  position:absolute; padding:12px 15px; border:1px solid var(--border); background:rgba(17,23,34,.94);
+  border-radius:14px; font-weight:800; font-size:13px; box-shadow:0 18px 45px rgba(0,0,0,.25);
+}
+.card-one { top:20px; left:0; } .card-two { right:0; bottom:20px; }
+.section { padding:95px 8%; }
+.section-heading { max-width:720px; margin-bottom:38px; }
+.section-heading h2 { font-size:42px; line-height:1.1; margin:10px 0; letter-spacing:-1.5px; }
+.section-heading p, .info-card p, .check-item p { color:var(--muted); }
+.cards { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.info-card, .quiz-card {
+  background:linear-gradient(145deg,var(--panel2),var(--panel)); border:1px solid var(--border);
+  border-radius:22px; padding:28px;
+}
+.info-card { min-height:245px; }
+.icon { width:52px; height:52px; display:grid; place-items:center; border-radius:15px; font-size:24px; margin-bottom:22px; }
+.green { background:rgba(25,230,140,.1); } .purple { background:rgba(139,92,246,.12); } .orange { background:rgba(255,173,61,.12); }
+.info-card h3 { margin:0 0 8px; font-size:21px; }
+.tag { display:inline-block; margin-top:15px; padding:5px 9px; border-radius:7px; background:rgba(255,255,255,.06); color:#d5dbea; font-size:11px; font-weight:900; }
+.warning-section { padding:20px 8% 80px; }
+.warning-box {
+  display:flex; gap:25px; align-items:flex-start; padding:35px; border-radius:24px;
+  border:1px solid rgba(255,173,61,.3); background:rgba(255,173,61,.06);
+}
+.warning-icon { font-size:38px; }
+.warning-box h2 { margin:6px 0; font-size:31px; }
+.warning-box p { color:var(--muted); margin:0; }
+.check-grid { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+.check-item { display:flex; gap:17px; padding:22px; background:var(--panel); border:1px solid var(--border); border-radius:17px; }
+.check-item > span { color:var(--green); font-size:25px; font-weight:900; }
+.check-item h3 { margin:0; } .check-item p { margin:4px 0 0; }
+.quiz-section { padding-top:25px; }
+.quiz-card { text-align:center; max-width:850px; margin:auto; }
+.quiz-card h2 { font-size:36px; margin:8px 0; }
+.quiz-card > p { color:var(--muted); }
+.quiz-options { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin:25px 0; }
+.quiz-btn {
+  padding:12px 16px; border:1px solid var(--border); background:#0d131d; color:white; border-radius:11px;
+  cursor:pointer; font-weight:800;
+}
+.quiz-btn:hover { border-color:var(--green); }
+.quiz-result { min-height:24px; font-weight:900; }
+.faq-list { max-width:850px; }
+details { border-bottom:1px solid var(--border); padding:20px 0; }
+summary { cursor:pointer; font-weight:850; font-size:17px; }
+details p { color:var(--muted); }
+footer {
+  border-top:1px solid var(--border); padding:35px 8%; display:flex; justify-content:space-between;
+  gap:20px; color:var(--muted); font-size:13px;
+}
+footer strong { color:white; font-size:18px; } footer p { margin:5px 0; }
+.toast {
+  position:fixed; left:50%; bottom:25px; transform:translate(-50%,20px); opacity:0; pointer-events:none;
+  background:#f4f7fb; color:#091018; padding:12px 18px; border-radius:10px; font-weight:800; transition:.25s;
+}
+.toast.show { opacity:1; transform:translate(-50%,0); }
+@media (max-width: 850px) {
+  .navbar { padding:0 5%; } .menu-toggle { display:block; }
+  nav { display:none; position:absolute; top:72px; left:0; right:0; padding:20px 5%; background:#0b0f17; flex-direction:column; gap:15px; border-bottom:1px solid var(--border); }
+  nav.open { display:flex; }
+  .hero { grid-template-columns:1fr; padding:65px 6%; min-height:auto; }
+  .hero-card { min-height:380px; }
+  .cards, .check-grid { grid-template-columns:1fr; }
+  .section { padding:70px 6%; }
+  .warning-section { padding:10px 6% 60px; }
+  footer { flex-direction:column; padding:30px 6%; }
+}
+@media (max-width: 520px) {
+  h1 { letter-spacing:-2px; } .trust-row { gap:15px; justify-content:space-between; }
+  .trust-row strong { font-size:19px; } .hero-card { transform:scale(.9); }
+  .card-one { left:-5px; } .card-two { right:-5px; }
+}
+
+</style>
+</head>
+<body>
+  <header class="navbar">
+    <a class="brand" href="#home" aria-label="RobuxHub home">
+      <span class="brand-icon">R</span>
+      <span>Robux<span class="brand-accent">Hub</span></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu">☰</button>
+    <nav id="navMenu">
+      <a href="#home">Home</a>
+      <a href="#earn">Earn</a>
+      <a href="#safety">Safety</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <span class="pill">🛡️ Safe • Simple • Roblox-themed</span>
+        <h1>Learn how to get Robux <span>safely.</span></h1>
+        <p class="hero-text">
+          No fake generators. No passwords. No suspicious downloads.
+          Explore legitimate Roblox options and learn how to avoid scams.
+        </p>
+        <div class="hero-buttons">
+          <a class="btn primary" href="#earn">Explore options</a>
+          <a class="btn secondary" href="#safety">Stay safe</a>
+        </div>
+        <div class="trust-row">
+          <div><strong>100%</strong><span>Safety focused</span></div>
+          <div><strong>0</strong><span>Fake generators</span></div>
+          <div><strong>24/7</strong><span>Scam awareness</span></div>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="coin">R$</div>
+        <div class="floating-card card-one">🔒 Never share passwords</div>
+        <div class="floating-card card-two">🚫 No “free Robux” generators</div>
+        <div class="robux-card">
+          <span class="small-label">YOUR SAFE GUIDE</span>
+          <div class="robux-number">ROBux</div>
+          <p>Learn • Create • Play</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="earn">
+      <div class="section-heading">
+        <span class="eyebrow">LEGITIMATE OPTIONS</span>
+        <h2>Ways to get Robux safely</h2>
+        <p>Use official Roblox features and trusted methods. Never enter your login details on random “generator” sites.</p>
+      </div>
+      <div class="cards">
+        <article class="info-card">
+          <div class="icon green">🎮</div>
+          <h3>Roblox Premium</h3>
+          <p>Roblox offers Premium memberships that include a monthly Robux allowance and other benefits.</p>
+          <span class="tag">Official option</span>
+        </article>
+        <article class="info-card">
+          <div class="icon purple">🧑‍💻</div>
+          <h3>Create experiences</h3>
+          <p>Creators can build Roblox experiences and participate in Roblox's creator economy under its rules.</p>
+          <span class="tag">For creators</span>
+        </article>
+        <article class="info-card">
+          <div class="icon orange">🎁</div>
+          <h3>Official gift cards</h3>
+          <p>Use Roblox gift cards purchased through legitimate retailers or official channels.</p>
+          <span class="tag">Trusted method</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="warning-section" id="safety">
+      <div class="warning-box">
+        <div class="warning-icon">⚠️</div>
+        <div>
+          <span class="eyebrow">SCAM ALERT</span>
+          <h2>There is no secret Robux generator.</h2>
+          <p>
+            Be suspicious of pages asking for your Roblox password, cookies, verification codes,
+            downloads, surveys, or payment information in exchange for “instant free Robux.”
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section checklist">
+      <div class="section-heading">
+        <span class="eyebrow">QUICK CHECK</span>
+        <h2>Before you click anything</h2>
+      </div>
+      <div class="check-grid">
+        <div class="check-item"><span>✓</span><div><h3>Check the website</h3><p>Make sure you are using an official, trusted service.</p></div></div>
+        <div class="check-item"><span>✓</span><div><h3>Protect your password</h3><p>Never give your Roblox password to another website or person.</p></div></div>
+        <div class="check-item"><span>✓</span><div><h3>Skip suspicious downloads</h3><p>“Robux generators” often use downloads to spread unwanted software.</p></div></div>
+        <div class="check-item"><span>✓</span><div><h3>Think before you share</h3><p>Don't post private account details, recovery codes, or authentication codes.</p></div></div>
+      </div>
+    </section>
+
+    <section class="section quiz-section">
+      <div class="quiz-card">
+        <span class="eyebrow">MINI QUIZ</span>
+        <h2>Can you spot a Robux scam?</h2>
+        <p id="quizQuestion">A website says: “Enter your Roblox password to receive 10,000 free Robux.” What should you do?</p>
+        <div class="quiz-options">
+          <button class="quiz-btn" data-correct="false">Enter the password</button>
+          <button class="quiz-btn" data-correct="true">Leave the site</button>
+          <button class="quiz-btn" data-correct="false">Download its generator</button>
+        </div>
+        <p class="quiz-result" id="quizResult" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section class="section faq" id="faq">
+      <div class="section-heading">
+        <span class="eyebrow">FAQ</span>
+        <h2>Common questions</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Are free Robux generator websites real?</summary>
+          <p>No. Treat “instant free Robux generator” claims as a major scam warning sign.</p>
+        </details>
+        <details>
+          <summary>Can I put my Roblox password into this website?</summary>
+          <p>No. This website never asks for or collects Roblox passwords, cookies, or verification codes.</p>
+        </details>
+        <details>
+          <summary>How can I get Robux legitimately?</summary>
+          <p>Use official Roblox purchasing options, eligible creator-economy features, or legitimate Roblox gift cards.</p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <strong>Robux<span class="brand-accent">Hub</span></strong>
+      <p>Educational Roblox-themed demo website.</p>
+    </div>
+    <p>© <span id="year"></span> RobuxHub. Not affiliated with Roblox Corporation.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+const menuToggle = document.getElementById("menuToggle");
+const navMenu = document.getElementById("navMenu");
+const toast = document.getElementById("toast");
+
+menuToggle.addEventListener("click", () => {
+  navMenu.classList.toggle("open");
+});
+
+document.querySelectorAll("nav a").forEach(link => {
+  link.addEventListener("click", () => navMenu.classList.remove("open"));
+});
+
+document.querySelectorAll(".quiz-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    const result = document.getElementById("quizResult");
+    if (button.dataset.correct === "true") {
+      result.textContent = "Correct! 🚀 A real service should never need your Roblox password.";
+      showToast("Great job — you spotted the scam!");
+    } else {
+      result.textContent = "Not quite. ⚠️ Never give your password to a supposed Robux generator.";
+      showToast("Remember: protect your account.");
+    }
+  });
+});
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => toast.classList.remove("show"), 2500);
+}
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+</script>
+</body>
+</html>
